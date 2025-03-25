@@ -5,7 +5,7 @@ import { TarefasContext } from "../../../context/TarefasContext";
 import styles from "../styles.module.css";
 
 const FormularioTarefas = () => {
-  const { exibirFormulario, adicionarTarefa, aoExibirFormulario } = useContext(TarefasContext);
+  const { exibirFormulario, aoExibirFormulario, dispatch } = useContext(TarefasContext);
   const [texto, setTexto] = useState("");
 
   return (
@@ -19,7 +19,14 @@ const FormularioTarefas = () => {
         etiqueta="Adicionando tarefa"
         placeholder="No que você está trabalhando?"
       />
-      <RodapeTarefas aoSalvar={() => adicionarTarefa(texto)} aoCancelar={aoExibirFormulario} />
+      <RodapeTarefas
+        aoSalvar={() => {
+          dispatch({ tipo: "ADICIONAR_TAREFA", payload: texto });
+          setTexto("");
+          aoExibirFormulario(false);
+        }}
+        aoCancelar={aoExibirFormulario}
+      />
     </form>
   );
 };
