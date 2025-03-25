@@ -1,8 +1,28 @@
+import { useRef } from "react";
 import styles from "./styles.module.css";
+import { useEffect } from "react";
+import musicaSom from "/src/assets/sons/luna-rise-part-one.mp3";
 
 export default function SwitchMusica() {
+  const musicaRef = useRef(null);
+
+  useEffect(() => {
+    musicaRef.current = new Audio(musicaSom);
+
+    return () => {
+      musicaRef.current?.pause();
+      musicaRef.current = null;
+    };
+  }, []);
+
   function alternarMusica() {
-    return;
+    if (!musicaRef.current) return;
+
+    if (musicaRef.current.paused) {
+      musicaRef.current.play();
+    } else {
+      musicaRef.current.pause();
+    }
   }
 
   return (
