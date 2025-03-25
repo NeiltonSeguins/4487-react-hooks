@@ -4,7 +4,7 @@ import BotoesModos from "./BotoesModos";
 import Timer from "./Timer";
 import SwitchMusica from "./SwitchMusica";
 import BotaoCronometro from "./BotaoCronometro";
-import { useEffect } from "react";
+import { useEffect, useRef } from "react";
 import { useState } from "react";
 
 const modos = [
@@ -26,6 +26,8 @@ const modos = [
 ];
 
 export default function Cronometro() {
+  const musicaRef = useRef(null);
+
   const [modoAtual, setModoAtual] = useState(modos[0]);
   const [tempoRestante, setTempoRestante] = useState(modoAtual.duracao);
   const [emExecucao, setEmExecucao] = useState(false); // Para saber se o cronômetro está rodando
@@ -50,21 +52,34 @@ export default function Cronometro() {
     return () => clearInterval(intervalo);
   }, [emExecucao, tempoRestante, modoAtual]);
 
+  const controlarMusica = () => {
+    if (musicaRef.current) {
+      musicaRef.current.play();
+    }
+  };
+
   const alternarCronometro = () => {
     setEmExecucao((prev) => !prev);
+
+    if (!emExecucao) {
+      controlarMusica();
+    } else {
+      musicaRef.current.pause();
+    }
   };
 
   const selecionarModo = (novoModo) => {
     setModoAtual(novoModo);
     setTempoRestante(novoModo.duracao);
     setEmExecucao(false);
+    musicaRef.current.pause();
   };
 
   return (
     <div className={styles["cronometer"]}>
       <BotoesModos modos={modos} modoAtual={modoAtual} onModoSelecionado={selecionarModo} />
       <Timer tempoRestante={tempoRestante} />
-      <SwitchMusica />
+      <SwitchMusica ref={musicaRef} />
       <BotaoCronometro emExecucao={emExecucao} onClick={alternarCronometro} />
     </div>
   );
