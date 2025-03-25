@@ -4,11 +4,10 @@ import BotoesModos from "./BotoesModos";
 import Timer from "./Timer";
 import SwitchMusica from "./SwitchMusica";
 import BotaoCronometro from "./BotaoCronometro";
-import { CronometroContext } from "../../context/CronometroContext";
-import { useContext } from "react";
+import useCronometroContext from "../../hooks/useCronometroContext";
 
 export default function Cronometro() {
-  const { musicaRef } = useContext(CronometroContext);
+  const { musicaRef } = useCronometroContext();
 
   return (
     <div className={styles["cronometer"]}>

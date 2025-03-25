@@ -1,9 +1,8 @@
-import { useContext } from "react";
-import { CronometroContext } from "../../../context/CronometroContext";
+import useCronometroContext from "../../../hooks/useCronometroContext";
 import styles from "./styles.module.css";
 
 export default function Timer() {
-  const { tempoRestante } = useContext(CronometroContext);
+  const { tempoRestante } = useCronometroContext();
   const minutos = Math.floor(tempoRestante / 60);
   const segundos = tempoRestante % 60;
 

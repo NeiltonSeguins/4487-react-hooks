@@ -4,11 +4,10 @@ import Botao from "./Botao";
 import CabecalhoTarefas from "./CabecalhoTarefas";
 import FormularioTarefas from "./FormularioTarefas";
 import ListaTarefas from "./ListaTarefas";
-import { useContext } from "react";
-import { TarefasContext } from "../../context/TarefasContext";
+import useTarefasContext from "../../hooks/useTarefasContext";
 
 const AppTarefas = () => {
-  const { exibirFormulario, aoExibirFormulario } = useContext(TarefasContext);
+  const { exibirFormulario, aoExibirFormulario } = useTarefasContext();
 
   return (
     <section className={styles["tasks"]}>

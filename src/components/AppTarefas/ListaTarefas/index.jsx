@@ -1,12 +1,11 @@
-import { useContext } from "react";
 import Botao from "../Botao";
 import styles from "../styles.module.css";
 import checkImg from "/src/assets/imgs/check-task.png";
 import trashImg from "/src/assets/imgs/trash.svg";
-import { TarefasContext } from "../../../context/TarefasContext";
+import useTarefasContext from "../../../hooks/useTarefasContext";
 
 const ListaTarefas = () => {
-  const { estado, dispatch } = useContext(TarefasContext);
+  const { estado, dispatch } = useTarefasContext();
   return (
     <ul className={styles["tasks__task-list"]}>
       {estado.lista.map((tarefa) => (

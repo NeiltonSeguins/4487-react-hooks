@@ -3,11 +3,10 @@ import moreImg from "/src/assets/imgs/more.svg";
 import checkImg from "/src/assets/imgs/check.svg";
 import trashImg from "/src/assets/imgs/trash.svg";
 import Botao from "../Botao";
-import { TarefasContext } from "../../../context/TarefasContext";
-import { useContext } from "react";
+import useTarefasContext from "../../../hooks/useTarefasContext";
 
 const MenuOpcoes = () => {
-  const { dispatch } = useContext(TarefasContext);
+  const { dispatch } = useTarefasContext();
   return (
     <div className={styles["dropdown"]}>
       <Botao icone={moreImg} className={styles["dropdown__button-more"]} />

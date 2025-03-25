@@ -1,11 +1,10 @@
 import styles from "./styles.module.css";
 import play_arrowImg from "/src/assets/imgs/play_arrow.png";
 import pauseImg from "/src/assets/imgs/pause.png";
-import { useContext } from "react";
-import { CronometroContext } from "../../../context/CronometroContext";
+import useCronometroContext from "../../../hooks/useCronometroContext";
 
 const BotaoCronometro = () => {
-  const { emExecucao, alternarCronometro } = useContext(CronometroContext);
+  const { emExecucao, alternarCronometro } = useCronometroContext();
   return (
     <div className={styles["cronometer__primary-button-wrapper"]}>
       <button onClick={alternarCronometro} className={styles["cronometer__primary-button"]}>
