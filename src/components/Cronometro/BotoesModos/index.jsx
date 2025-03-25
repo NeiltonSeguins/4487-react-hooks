@@ -1,8 +1,11 @@
 import styles from "./styles.module.css";
 
 import BotaoModo from "./BotaoModo";
+import { useContext } from "react";
+import { CronometroContext } from "../../../context/CronometroContext";
 
-const BotoesModos = ({ modos, modoAtual, onModoSelecionado }) => {
+const BotoesModos = () => {
+  const { modos, modoAtual, onModoSelecionado } = useContext(CronometroContext);
   return (
     <ul className={styles["cronometer-modes"]}>
       {modos.map((m) => (

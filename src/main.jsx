@@ -1,13 +1,16 @@
 import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
 import App from "./App.jsx";
-import "./index.css";
 import TarefasProvider from "./context/TarefasContext.jsx";
+import CronometroProvider from "./context/CronometroContext.jsx";
+import "./index.css";
 
 createRoot(document.getElementById("root")).render(
   <StrictMode>
     <TarefasProvider>
-      <App />
+      <CronometroProvider>
+        <App />
+      </CronometroProvider>
     </TarefasProvider>
   </StrictMode>,
 );
