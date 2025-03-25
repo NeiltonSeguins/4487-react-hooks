@@ -3,9 +3,7 @@ import styles from "../styles.module.css";
 import checkImg from "/src/assets/imgs/check-task.png";
 import trashImg from "/src/assets/imgs/trash.svg";
 
-const tarefas = [];
-
-const ListaTarefas = () => {
+const ListaTarefas = ({ tarefas }) => {
   return (
     <ul className={styles["tasks__task-list"]}>
       {tarefas.map((tarefa) => (
