@@ -1,7 +1,6 @@
 import styles from "./styles.module.css";
 
-export default function Timer() {
-  const tempoRestante = 25;
+export default function Timer({ tempoRestante }) {
   const minutos = Math.floor(tempoRestante / 60);
   const segundos = tempoRestante % 60;
 
